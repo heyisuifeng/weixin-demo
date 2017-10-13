@@ -1,8 +1,10 @@
 package com.leaf.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import com.leaf.entity.wxResult.JSConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -29,7 +31,6 @@ public class WXJSSDKUtils {
 
     /**
      * 生成签名实体
-     *
      * @param jsapi_ticket JS_API临时票据
      * @param url          请求地址，参考微信文档
      * @return
@@ -67,7 +68,6 @@ public class WXJSSDKUtils {
 
     /**
      * 加密
-     *
      * @param hash
      * @return
      */
@@ -83,7 +83,6 @@ public class WXJSSDKUtils {
 
     /**
      * 随机数
-     *
      * @return
      */
     private static String create_nonce_str() {
@@ -92,7 +91,6 @@ public class WXJSSDKUtils {
 
     /**
      * 时间戳
-     *
      * @return
      */
     private static String create_timestamp() {
@@ -101,12 +99,11 @@ public class WXJSSDKUtils {
 
     /**
      * 获取access_token
-     *
      * @param appid
      * @param secret
      * @return
      */
-    /*public static String getAccessToken(String appid, String secret) {
+    public static String getAccessToken(String appid, String secret) {
         try {
             String getAccessTokenURL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&"
                     + "appid=" + appid + "&secret=" + secret;
@@ -117,7 +114,7 @@ public class WXJSSDKUtils {
             System.out.println("获取access_token失败。。。。。。");
             return "";
         }
-    }*/
+    }
 
     /**
      * 获取临时票据
@@ -126,7 +123,7 @@ public class WXJSSDKUtils {
      * @param type         wx_card:卡卷ticket jsapi:JsApiTicket
      * @return
      */
-    /*public static String getTicket(String access_token, String type) {
+    public static String getTicket(String access_token, String type) {
         try {
             String getTicketURL = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + access_token + "&type=" + type;
             String ticketXml = HttpClientUtils.doGet(getTicketURL);
@@ -136,7 +133,7 @@ public class WXJSSDKUtils {
             System.out.println("获取" + type + "类型的ticket失败");
             return "";
         }
-    }*/
+    }
 
 
     /**
