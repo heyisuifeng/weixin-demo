@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
@@ -222,4 +223,23 @@ public class WXJSSDKUtils {
         return is;
     }
 
+    /**
+     * 获取微信用户openId
+     * @param appid
+     * @param domain
+     * @return
+     */
+    public static String getOpenId(String appid, String domain){
+        try {
+            String requestUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri="
+                    + URLEncoder.encode("http://" + domain + "/weixin/authorization/back", "utf-8")
+                    + "&response_type=code&scope=snsapi_base&state=iXiaoWo#wechat_redirect";
+            String openIdXml = HttpClientUtils.doGet(requestUrl);
+            JSONObject openIdJsonMap = JSONObject.parseObject(openIdXml);
+            return openIdJsonMap.getString("openid");
+        } catch (Exception e) {
+            System.out.println("获取access_token失败。。。。。。");
+            return "";
+        }
+    }
 }

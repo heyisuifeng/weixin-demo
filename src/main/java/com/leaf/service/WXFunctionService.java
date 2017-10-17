@@ -18,9 +18,12 @@ import javax.servlet.http.HttpServletRequest;
  ********************************************************/
 @Service
 public class WXFunctionService {
-    @Value("#{wxProperties.wechat.appId}")
+    //这种配置方式，需要在applicationContext.xml文件中配置相应的bean
+    //@Value("#{wxProperties['wechat.appId']}")
+    @Value("${wechat.appId}")
     private String appId;
-    @Value("#{wxProperties.wechat.secret}")
+    //@Value("#{wxProperties['wechat.secret']}")
+    @Value("${wechat.secret}")
     private String secret;
 
     /**

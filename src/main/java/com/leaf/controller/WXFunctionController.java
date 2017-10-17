@@ -33,4 +33,9 @@ public class WXFunctionController {
         mv.setViewName("");
         return mv;
     }
+
+    @RequestMapping("authorization/back")
+    public String wxBack(){
+        return "";
+    }
 }
